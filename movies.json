@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "The Dark Knight",
+    "genre": "Action",
+    "year": 2008
+  },
+  {
+    "id": 2,
+    "title": "Avengers: Endgame",
+    "genre": "Action",
+    "year": 2019
+  },
+  {
+    "id": 3,
+    "title": "Spider-Man: No Way Home",
+    "genre": "Action",
+    "year": 2021
+  },
+  {
+    "id": 4,
+    "title": "Iron Man",
+    "genre": "Action",
+    "year": 2008
+  },
+  {
+    "id": 5,
+    "title": "John Wick",
+    "genre": "Action",
+    "year": 2014
+  },
+  {
+    "id": 6,
+    "title": "Mission: Impossible",
+    "genre": "Action",
+    "year": 1996
+  },
+  {
+    "id": 7,
+    "title": "Fast & Furious 7",
+    "genre": "Action",
+    "year": 2015
+  },
+  {
+    "id": 8,
+    "title": "Black Panther",
+    "genre": "Action",
+    "year": 2018
+  },
+  {
+    "id": 9,
+    "title": "Captain America: Civil War",
+    "genre": "Action",
+    "year": 2016
+  },
+  {
+    "id": 10,
+    "title": "Top Gun: Maverick",
+    "genre": "Action",
+    "year": 2022
+  },
+  {
+    "id": 11,
+    "title": "The Equalizer",
+    "genre": "Action",
+    "year": 2014
+  },
+  {
+    "id": 12,
+    "title": "Extraction",
+    "genre": "Action",
+    "year": 2020
+  },
+  {
+    "id": 13,
+    "title": "Gladiator",
+    "genre": "Action",
+    "year": 2000
+  },
+  {
+    "id": 14,
+    "title": "Mad Max: Fury Road",
+    "genre": "Action",
+    "year": 2015
+  },
+  {
+    "id": 15,
+    "title": "The Matrix",
+    "genre": "Action",
+    "year": 1999
+  },
+  {
+    "id": 16,
+    "title": "Die Hard",
+    "genre": "Action",
+    "year": 1988
+  },
+  {
+    "id": 17,
+    "title": "Terminator 2: Judgment Day",
+    "genre": "Action",
+    "year": 1991
+  },
+  {
+    "id": 18,
+    "title": "Man of Steel",
+    "genre": "Action",
+    "year": 2013
+  },
+  {
+    "id": 19,
+    "title": "Aquaman",
+    "genre": "Action",
+    "year": 2018
+  },
+  {
+    "id": 20,
+    "title": "Deadpool",
+    "genre": "Action",
+    "year": 2016
+  }
+]

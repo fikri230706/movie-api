@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Movie Action API</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+        }
+
+        header p {
+            margin: 0;
+            color: #ccc;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #222;
+        }
+
+        .search-box button {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 6px;
+            background: #222;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .search-box button:hover {
+            background: #444;
+        }
+
+        #movies {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(250px, 1fr)
+            );
+            gap: 20px;
+        }
+
+        .movie {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .movie:hover {
+            transform: translateY(-3px);
+        }
+
+        .movie h2 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .movie p {
+            margin: 8px 0;
+        }
+
+        .empty {
+            text-align: center;
+            width: 100%;
+            padding: 30px;
+        }
+
+        .info {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🎬 Movie Action</h1>
+        <p>REST API Film Action</p>
+    </header>
+
+    <div class="container">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari berdasarkan ID atau judul film..."
+            >
+
+            <button onclick="searchMovie()">
+                Cari
+            </button>
+
+            <button onclick="getMovies()">
+                Reset
+            </button>
+
+        </div>
+
+        <div class="info">
+            Daftar film Action
+        </div>
+
+        <div id="movies">
+            Memuat film...
+        </div>
+
+    </div>
+
+    <script>
+
+        const API_URL = "http://localhost:3000/api/movies";
+
+        const movieContainer =
+            document.getElementById("movies");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+
+        // ===============================
+        // GET SEMUA FILM
+        // ===============================
+
+        function getMovies() {
+
+            searchInput.value = "";
+
+            fetch(API_URL)
+
+                .then(response => response.json())
+
+                .then(movies => {
+                    displayMovies(movies);
+                })
+
+                .catch(error => {
+
+                    movieContainer.innerHTML =
+                        "<p class='empty'>Gagal mengambil data film.</p>";
+
+                    console.error(error);
+                });
+        }
+
+
+        // ===============================
+        // MENAMPILKAN FILM
+        // ===============================
+
+        function displayMovies(movies) {
+
+            movieContainer.innerHTML = "";
+
+            if (movies.length === 0) {
+
+                movieContainer.innerHTML =
+                    "<p class='empty'>Film tidak ditemukan.</p>";
+
+                return;
+            }
+
+            movies.forEach(movie => {
+
+                movieContainer.innerHTML += `
+
+                    <div class="movie">
+
+                        <h2>${movie.title}</h2>
+
+                        <p>🎭 Genre: ${movie.genre}</p>
+
+                        <p>📅 Tahun: ${movie.year}</p>
+
+                        <p>🆔 ID: ${movie.id}</p>
+
+                    </div>
+
+                `;
+            });
+        }
+
+
+        // ===============================
+        // SEARCH ID / JUDUL
+        // ===============================
+
+        function searchMovie() {
+
+            const keyword =
+                searchInput.value.trim();
+
+            if (keyword === "") {
+
+                getMovies();
+
+                return;
+            }
+
+            fetch(
+                `${API_URL}/search?keyword=${encodeURIComponent(keyword)}`
+            )
+
+                .then(response => response.json())
+
+                .then(movies => {
+                    displayMovies(movies);
+                })
+
+                .catch(error => {
+
+                    movieContainer.innerHTML =
+                        "<p class='empty'>Gagal mencari film.</p>";
+
+                    console.error(error);
+                });
+        }
+
+
+        // ===============================
+        // ENTER UNTUK SEARCH
+        // ===============================
+
+        searchInput.addEventListener(
+            "keypress",
+            function(event) {
+
+                if (event.key === "Enter") {
+                    searchMovie();
+                }
+
+            }
+        );
+
+
+        // ===============================
+        // JALANKAN SAAT WEBSITE DIBUKA
+        // ===============================
+
+        getMovies();
+
+    </script>
+
+</body>
+
+</html>
