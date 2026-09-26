@@ -204,8 +204,6 @@ app.delete("/api/movies/:id", (req, res) => {
 // MENJALANKAN SERVER
 // ===============================
 
-app.listen(PORT, () => {
-    console.log(
-        `Server berjalan di http://localhost:${PORT}`
-    );
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server berjalan di port ${PORT}`);
 });
